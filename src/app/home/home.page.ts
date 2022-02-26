@@ -6,6 +6,7 @@ import { TodoService } from '../shared/todo.service';
 import { TodoQuery } from '../state/todo.query';
 import { filter, switchMap, take } from 'rxjs/operators';
 import { TodoStore } from '../state/state';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
     private router: Router,
     private ts: TodoService,
     private tq: TodoQuery,
-    private todoStore: TodoStore
+    private todoStore: TodoStore,
+    public toastController: ToastController
     ) {
   }
   ngOnInit() {
@@ -60,6 +62,7 @@ export class HomePage implements OnInit {
     };
     this.ts.todoUpdate(id, payload).subscribe({
       next: (res) => {
+        this.presentToast('Todo has been successfully updated');
         this.todoStore.update( state => {
           const todos: Todo[] = [...state.todos];
           const index = todos.findIndex(t => t.id === id);
@@ -78,6 +81,7 @@ export class HomePage implements OnInit {
   deleteTodo(id: number){
     this.ts.deleteTodo(id).subscribe({
       next: (res) => {
+        this.presentToast('Todo has been successfully deleted');
         this.todoStore.update( state => {
           return {
             ...state,
@@ -86,5 +90,13 @@ export class HomePage implements OnInit {
         });
       }
     });
+  }
+  async presentToast(toastMessage) {
+    const toast = await this.toastController.create({
+      message: toastMessage,
+      duration: 2000,
+      color: 'dark',
+    });
+    toast.present();
   }
 }

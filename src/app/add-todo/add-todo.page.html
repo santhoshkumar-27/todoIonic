@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-buttons class="fl">
       <ion-button>
-        <ion-back-button></ion-back-button>
+        <ion-back-button defaultHref="/"></ion-back-button>
       </ion-button>
     </ion-buttons>
     <ion-title style="margin-block: 5px;">
@@ -17,7 +17,7 @@
       <ion-card-title color="success" class="tc">Enter Todo here</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <form [formGroup] = "form">
+      <form [formGroup] = "form" (ngSubmit)="form.valid && createTodo()">
         <ion-item>
           <ion-label position="floating">Title</ion-label>
           <ion-input type="text" formControlName="title"></ion-input>
