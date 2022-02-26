@@ -56,10 +56,10 @@ export class HomePage implements OnInit {
     });
   }
   doRefresh(event){
-    this.getLoad();
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
+      this.getLoad();
     }, 3000);
   }
   getRefreshTodo(){
