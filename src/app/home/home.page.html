@@ -8,26 +8,26 @@
     <ion-row class="mb-1 sticky">
       <ion-col class="fit-cont">
         <div class="mx-auto fit-cont">
-          <button type="button" class="btn" (click)="goTodo()">Add Todoy todo's</button>
+          <button type="button" class="btn" (click)="gotoTodo()">Add Todoy todo's</button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row class="br">
+    <ion-row class="br" *ngFor="let todo of todos;let i = index;">
       <ion-col size="7">
         <div>
           <div>
-            <span class="fw mb-0-5 dib">Todo Title</span>
-            <p class="mt-0">1</p>
+            <span class="fw mb-0-5 dib fc" style="text-transform: capitalize;">todo title</span>
+            <p class="mt-0" [ngClass]="{done: todo.status === 'done'}" style="text-transform: capitalize; color: #102f29;">{{ todo.title }}</p>
           </div>
           <div>
-            <span class="fw mb-0-5 dib">Todo Description</span>
-            <p class="mt-0">1</p>
+            <span class="fw mb-0-5 dib fc" style="text-transform: capitalize;">todo description</span>
+            <p class="mt-0" [ngClass]="{done: todo.status === 'done'}" style="text-transform: capitalize; color: #102f29;">{{ todo.description }}</p>
           </div>
         </div>
       </ion-col>
       <ion-col size="5" class="d-flex jcc aic">
-        <button class="btn btn-success">Mark as completed</button>
-        <!-- <button class="btn">Delete</button> -->
+        <button class="btn btn-success" *ngIf="todo.status === 'open'" (click)="markAsFinished(todo.id, todo)">Mark as completed</button>
+        <button class="btn btn-danger"  *ngIf="todo.status === 'done'"  (click)="deleteTodo(todo.id)">Delete</button>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -29,6 +29,7 @@
     "@datorama/akita-ng-entity-service": "^7.0.0",
     "@datorama/akita-ng-router-store": "^7.0.0",
     "@ionic/angular": "^6.0.0",
+    "@types/angular": "^1.8.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
