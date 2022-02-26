@@ -4,6 +4,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid [fixed]="true">
     <ion-row class="mb-1 sticky">
       <ion-col class="fit-cont">

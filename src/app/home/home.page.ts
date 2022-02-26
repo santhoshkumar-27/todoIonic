@@ -24,12 +24,15 @@ export class HomePage implements OnInit {
     ) {
   }
   ngOnInit() {
+    this.getLoad();
+  }
+  getLoad(){
     this.tq.getTodos().subscribe({next: (res) => this.todos  = res});
     this.tq.getLoading().subscribe({next: (res) => this.isLoaded = res});
     this.tq.getLoaded()
     .pipe(
-      take(1),
-      filter( res => !res),
+      // take(1),
+      // filter( res => !res),
       switchMap( () => {
         this.todoStore.setLoading(true);
         return this.ts.getTodos();
@@ -51,6 +54,16 @@ export class HomePage implements OnInit {
       }
 
     });
+  }
+  doRefresh(event){
+    this.getLoad();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 3000);
+  }
+  getRefreshTodo(){
+
   }
   gotoTodo() {
     this.router.navigateByUrl('/add-todo');
