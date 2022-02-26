@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Today Todo's</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid [fixed]="true">
+    <ion-row class="mb-1 sticky">
+      <ion-col class="fit-cont">
+        <div class="mx-auto fit-cont">
+          <button type="button" class="btn" (click)="goTodo()">Add Todoy todo's</button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="br">
+      <ion-col size="7">
+        <div>
+          <div>
+            <span class="fw mb-0-5 dib">Todo Title</span>
+            <p class="mt-0">1</p>
+          </div>
+          <div>
+            <span class="fw mb-0-5 dib">Todo Description</span>
+            <p class="mt-0">1</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="5" class="d-flex jcc aic">
+        <button class="btn btn-success">Mark as completed</button>
+        <!-- <button class="btn">Delete</button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
